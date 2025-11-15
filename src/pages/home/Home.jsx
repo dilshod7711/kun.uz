@@ -36,8 +36,8 @@ const Home = () => {
     navigate(`/posts/${id}`);
   }
 
-  function handleLIke(id) {
-    setLike((like) => like.filter((m) => m.id !== id));
+  function handleLIke(post) {
+    setLike([...like, post]);
   }
 
   return (
@@ -174,18 +174,18 @@ const Home = () => {
               <div key={post.id} className="flex flex-col group cursor-pointer">
                 <div className="relative">
                   <img
-                    src={`https://picsum.photos/seed/${post.id}/200/200`}
+                    src={`https://picsum.photos/seed/${post.id}/200/300`}
                     alt=""
                     className="w-full h-auto object-cover mb-3 transition duration-300 group-hover:opacity-80"
                   />
 
                   <div className="absolute top-2 right-2 z-10 flex flex-col space-y-1">
                     <div className="bg-gray-800/60 text-white p-1 rounded-full text-lg hover:bg-red-600 transition duration-150">
-                      <AiOutlineLike onClick={() => handleLIke(post.id)} />
+                      <AiOutlineLike onClick={() => handleLIke(post)} />
                     </div>
 
                     <div className="bg-gray-800/60 text-white p-1 rounded-full text-lg hover:bg-red-600 transition duration-150">
-                      <AiOutlineDislike />
+                      <AiOutlineDislike onClick={() => handleDisLIke(post)} />
                     </div>
                   </div>
                 </div>
