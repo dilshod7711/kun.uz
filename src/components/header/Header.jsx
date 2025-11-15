@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { IoMdMenu } from "react-icons/io";
 import { CiSearch } from "react-icons/ci";
+import { FcLike } from "react-icons/fc";
 
 const Header = () => {
   const { t, i18n } = useTranslation();
@@ -19,26 +20,31 @@ const Header = () => {
     setRandomImage(reklamaRassmlari[randomIndex]);
 
     const handleScroll = () => {
-      if (window.scrollY > 100) {
-        setIsSticky(true);
-      } else {
-        setIsSticky(false);
-      }
+      setIsSticky(window.scrollY > 100);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
   useEffect(() => {
     document.title = t("document.title");
-  }, [i18n.language]);
+  }, [i18n.language, t]);
+
   const handleSelectLanguage = (e) => {
-    i18n.changeLanguage(e.target.value);
+    const lang = e.target.value;
+    i18n.changeLanguage(lang);
+    localStorage.setItem("lang", lang);
   };
 
   function handleNavigate() {
     navigate("/");
   }
+
+  function handlaLikeNavigate() {
+    navigate("/like");
+  }
+
   return (
     <>
       <div className="container">
@@ -50,19 +56,19 @@ const Header = () => {
           />
         ) : (
           <div className="w-full text-center p-4 bg-gray-100">
-            Reklama yuklanmoqda...
+            {t("header.load")}
           </div>
         )}
       </div>
 
       <nav
-        className={`bg-white p-2 rounded-sm  ${
+        className={`bg-white p-2 rounded-sm ${
           isSticky
-            ? "fixed top-0 left-0 w-full  z-50"
+            ? "fixed top-0 left-0 w-full z-50"
             : "w-[1285px] mx-auto mt-2"
         }`}
       >
-        <div className=" container flex justify-between items-center">
+        <div className="container flex justify-between items-center">
           <div>
             <img
               onClick={handleNavigate}
@@ -85,6 +91,7 @@ const Header = () => {
           <div className="flex gap-4 items-center">
             <select
               onChange={handleSelectLanguage}
+              value={localStorage.getItem("lang") || "uz"}
               className="p-2 bg-gray-100 rounded-sm"
             >
               <option value="uz">Ўзбекча</option>
@@ -96,21 +103,24 @@ const Header = () => {
               <CiSearch className="w-6 h-6" />
             </div>
 
-            <div className="">
-              <IoMdMenu className="w-6 h-6 cursor-pointer" />
-            </div>
+            <FcLike
+              onClick={handlaLikeNavigate}
+              className="w-6 h-6 cursor-pointer"
+            />
+
+            <IoMdMenu className="w-6 h-6 cursor-pointer" />
           </div>
         </div>
       </nav>
 
       <nav
-        className={`bg-gray-100 p-3 rounded-sm  ${
+        className={`bg-gray-100 p-3 rounded-sm ${
           isSticky
             ? "fixed top-[60px] left-0 w-full shadow z-40"
             : "w-[1285px] mx-auto"
         }`}
       >
-        <div className=" container flex justify-center items-center gap-8 text-center">
+        <div className="container flex justify-center items-center gap-8 text-center">
           <Link className="hover:text-blue-600">{t("header.talim")}</Link>
           <Link className="hover:text-blue-600">{t("header.moliya")}</Link>
           <Link className="hover:text-blue-600">{t("header.avto")}</Link>

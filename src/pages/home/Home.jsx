@@ -2,10 +2,16 @@ import React, { useEffect, useState } from "react";
 import { API } from "../../helpers/API/api";
 import { AiOutlineLike } from "react-icons/ai";
 import { AiOutlineDislike } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
+import usePostsApp from "../../hooks/usePostsApp";
+import { Context } from "../../context";
+import { useTranslation } from "react-i18next";
 
 const Home = () => {
+  const { t } = useTranslation();
   const [posts, setPosts] = useState();
-
+  const [like, setLike] = usePostsApp(Context);
+  const navigate = useNavigate();
   useEffect(() => {
     API.get("/posts")
       .then((res) => setPosts(res.data.posts))
@@ -17,8 +23,10 @@ const Home = () => {
   if (!posts || posts.length === 0) {
     return (
       <section>
-        <div className="container mx-auto p-4">
-          <p>Ma'lumotlar yuklanmoqda...</p>
+        <div className="container mx-auto p-4 ">
+          <p className="text-center font-bold text-blue-600 text-2xl">
+            {t("header.load")}
+          </p>
         </div>
       </section>
     );
@@ -34,6 +42,14 @@ const Home = () => {
     "https://storage.kun.uz/source/thumbnails/_medium/11/2sdokOugC3qY-0N3x2qDwW33M9pD7Io8_medium.jpg",
     "	https://storage.kun.uz/source/thumbnails/_medium/11/3bGr23_d5dEA-xBn4qbLsT67jPv_OR5c_medium.jpg",
   ];
+
+  function handleDetail(id) {
+    navigate(`/posts/${id}`);
+  }
+
+  function handleLikeApp(post) {
+    setLike([...like, post]);
+  }
 
   const getRandomImage = () => {
     const randomIndex = Math.floor(Math.random() * randomImageUrls.length);
@@ -134,7 +150,11 @@ const Home = () => {
             </h1>
 
             {posts.slice(0, 21).map((post) => (
-              <div key={post.id} className="pb-3">
+              <div
+                onClick={() => handleDetail(post.id)}
+                key={post.id}
+                className="pb-3 "
+              >
                 <h2 className="text-base font-bold text-gray-900 mb-1 leading-snug hover:text-red-600 transition duration-150 cursor-pointer">
                   {post.title}
                 </h2>
@@ -162,8 +182,8 @@ const Home = () => {
       {/*  */}
       <section className="py-10">
         <div className="container mx-auto px-4">
-          <h1 className="text-3xl font-extrabold text-gray-900 mb-6 inline-block pb-1 border-b-4 border-red-600">
-            Мақолалар
+          <h1 className="text-3xl font-extrabold text-gray-900 mb-6 inline-block pb-1 ">
+            {t("header.maqol")}
           </h1>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -178,7 +198,7 @@ const Home = () => {
 
                   <div className="absolute top-2 right-2 z-10 flex flex-col space-y-1">
                     <div className="bg-gray-800/60 text-white p-1 rounded-full text-lg hover:bg-red-600 transition duration-150">
-                      <AiOutlineLike />
+                      <AiOutlineLike onClick={() => handleLikeApp(post)} />
                     </div>
 
                     <div className="bg-gray-800/60 text-white p-1 rounded-full text-lg hover:bg-red-600 transition duration-150">
@@ -186,21 +206,22 @@ const Home = () => {
                     </div>
                   </div>
                 </div>
+                <div onClick={() => handleDetail(post.id)}>
+                  <div className="text-xs text-gray-500 mb-2 flex items-center">
+                    <span className="font-semibold text-blue-600 mr-2">
+                      Ўзбекистон
+                    </span>
+                    <span className="mr-3">| 20:55 / 15.10.2025</span>
+                  </div>
 
-                <div className="text-xs text-gray-500 mb-2 flex items-center">
-                  <span className="font-semibold text-blue-600 mr-2">
-                    Ўзбекистон
-                  </span>
-                  <span className="mr-3">| 20:55 / 15.10.2025</span>
+                  <h2 className="text-lg font-bold text-gray-900 mb-1 leading-snug group-hover:text-red-600 transition duration-150 line-clamp-1">
+                    {post.title}
+                  </h2>
+
+                  <h2 className="text-lg font-bold text-gray-900 mb-1 leading-snug  line-clamp-3">
+                    {post.body}
+                  </h2>
                 </div>
-
-                <h2 className="text-lg font-bold text-gray-900 mb-1 leading-snug group-hover:text-red-600 transition duration-150 line-clamp-1">
-                  {post.title}
-                </h2>
-
-                <h2 className="text-lg font-bold text-gray-900 mb-1 leading-snug  line-clamp-3">
-                  {post.body}
-                </h2>
               </div>
             ))}
           </div>

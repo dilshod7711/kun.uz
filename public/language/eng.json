@@ -14,7 +14,9 @@
     "mulk": "Real Estate",
     "ayollar": "Women’s World",
     "turizm": "Tourism",
-    "beznes": "Business"
+    "beznes": "Business",
+    "load": "Advertisement loading...",
+    "maqol": "Articles"
   },
   "footer": {
     "sayt": "About the Site",
@@ -32,8 +34,10 @@
     "Eadrr": "Email Address:",
     "maqola": "- This mark placed in articles and materials indicates that they are published based on commercial and advertising rights.",
     "himoya": "All rights reserved."
+    
   },
   "document": {
     "title": "Uzbekistan and World News"
+   
   }
 }
