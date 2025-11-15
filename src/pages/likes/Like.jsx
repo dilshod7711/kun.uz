@@ -2,8 +2,10 @@ import React, { useContext } from "react";
 import { Context } from "../../context";
 import usePostsApp from "../../hooks/usePostsApp";
 import { IoHeartSharp, IoTrashOutline } from "react-icons/io5";
+import { useTranslation } from "react-i18next";
 
 const Like = () => {
+  const { t } = useTranslation();
   const [likedPosts, setLikedPosts] = usePostsApp(Context);
 
   return (
@@ -11,12 +13,12 @@ const Like = () => {
       <div className="container mx-auto px-4 max-w-4xl">
         <div className="flex justify-between items-center mb-6 pb-2 ">
           <h1 className="text-3xl font-extrabold text-gray-900">
-            Yoqtirilgan Yangiliklar{" "}
+            {t("header.likes")}{" "}
             <IoHeartSharp className="inline-block text-red-600 ml-2" />
           </h1>
           {likedPosts.length > 0 && (
             <p className="text-lg font-medium text-gray-600">
-              {likedPosts.length} ta xabar saqlangan
+              {likedPosts.length} {t("header.ta")}
             </p>
           )}
         </div>
@@ -24,11 +26,9 @@ const Like = () => {
         {likedPosts.length === 0 ? (
           <div className="p-10 bg-white rounded-lg shadow-lg text-center">
             <p className="text-xl text-gray-700 font-semibold mb-3">
-              Hozircha yoqtirilgan yangiliklar yo'q.
+              {t("header.yuq")}
             </p>
-            <p className="text-gray-500">
-              Yoqtirgan xabarlaringiz bu yerda ko'rsatiladi.
-            </p>
+            <p className="text-gray-500">{t("header.byer")}</p>
           </div>
         ) : (
           <div className="flex flex-col gap-6">
@@ -59,7 +59,7 @@ const Like = () => {
                   <div className="flex justify-between items-center text-xs text-gray-500 pt-2 border-t border-gray-100">
                     <div className="flex items-center">
                       <span className="font-semibold text-red-600 mr-3">
-                        Saqlangan
+                        {t("header.saq")}
                       </span>
                       <span>20:17/ 15.10.2025</span>
                     </div>

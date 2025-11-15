@@ -146,7 +146,7 @@ const Home = () => {
           {/* slice qilish kerak 0,21 disign uchun  */}
           <div className="lg:col-span-4 flex flex-col gap-4 pt-4 lg:pt-0">
             <h1 className="text-3xl font-bold border-b-1 border-gray-300 pb-2 mb-2 text-gray-900">
-              Сўнгги янгиликлар
+              {t("header.sungi")}
             </h1>
 
             {posts.slice(0, 21).map((post) => (

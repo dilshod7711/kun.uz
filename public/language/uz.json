@@ -16,7 +16,17 @@
     "turizm": "Туризм",
     "beznes": "Бизнес",
     "load": "Reklama yuklanmoqda...",
-    "maqol": "Мақолалар"
+    "maqol": "Мақолалар",
+    "likes": "Yoqtirilgan yangiliklar",
+    "byer": "Yoqtirgan xabarlaringiz bu yerda ko‘rsatiladi.",
+    "yuq": "Hozircha yoqtirilgan yangiliklar yo'q.",
+    "sungi": "Сўнгги янгиликлар",
+    "ta": "ta xabar saqlangan",
+    "saq": "Saqlangan",
+    "sory": "UZR! SAHIFA TOPILMADI",
+    "uzur": "Siz soʻragan sahifa manzilini topa olmadik. Iltimos, manzilni tekshiring yoki bosh sahifaga qayting.",
+    "bosh":"  Bosh Sahifaga Qaytish",
+    "reak":"  Post reaksiyalari:"
   },
   "footer": {
     "sayt": "Сайт ҳақида",

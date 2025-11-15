@@ -16,7 +16,17 @@
     "turizm": "Tourism",
     "beznes": "Business",
     "load": "Advertisement loading...",
-    "maqol": "Articles"
+    "maqol": "Articles",
+    "likes": "Liked news",
+    "byer": "Your liked messages will be displayed here.",
+    "yuq": "There are no liked news yet.",
+    "sungi": "Latest news",
+    "ta": "message saved",
+    "saq": "Saved",
+    "sory": "SORRY! PAGE NOT FOUND",
+    "uzur": "We could not find the page address you requested. Please check the address or return to the homepage.",
+    "bosh": "  Return to Homepage",
+    "reak": "  Post reactions:"
   },
   "footer": {
     "sayt": "About the Site",
@@ -34,10 +44,8 @@
     "Eadrr": "Email Address:",
     "maqola": "- This mark placed in articles and materials indicates that they are published based on commercial and advertising rights.",
     "himoya": "All rights reserved."
-    
   },
   "document": {
     "title": "Uzbekistan and World News"
-   
   }
 }

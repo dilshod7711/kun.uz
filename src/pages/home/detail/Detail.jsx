@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { API } from "../../../helpers/API/api";
 import { FiEye } from "react-icons/fi";
+import { useTranslation } from "react-i18next";
 
 const Detail = () => {
+  const { t } = useTranslation();
   const { id } = useParams();
   const [post, setPost] = useState(null);
 
@@ -20,7 +22,7 @@ const Detail = () => {
       <section className="py-10">
         <div className="container mx-auto px-4">
           <h1 className="text-xl font-semibold text-gray-700 text-center">
-            Yuklanmoqda...
+            {t("header.load")}
           </h1>
         </div>
       </section>
@@ -56,7 +58,7 @@ const Detail = () => {
             <br />
             <p>{post.body}</p>
             <p className="font-bold">
-              Post reaksiyalari: 👍 {post.reactions[0]} | ❤️ {post.reactions[1]}
+              {t("header.reak")} 👍 {post.reactions[0]} | ❤️ {post.reactions[1]}
             </p>
           </p>
         </div>

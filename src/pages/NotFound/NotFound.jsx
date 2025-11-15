@@ -1,8 +1,9 @@
 import React from "react";
-// Home ikonasi uchun
+import { useTranslation } from "react-i18next";
 import { IoHomeOutline } from "react-icons/io5";
 
 const NotFound = () => {
+  const { t } = useTranslation();
   return (
     <div className="flex flex-col items-center justify-center min-h-[80vh] py-10 ">
       <div className="w-full max-w-xl px-4 text-center">
@@ -11,12 +12,11 @@ const NotFound = () => {
         </p>
 
         <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">
-          UZR! SAHIFA TOPILMADI
+          {t("header.sory")}
         </h1>
 
         <p className="text-lg text-gray-600 mb-10 max-w-md mx-auto">
-          Siz soʻragan sahifa manzilini topa olmadik. Iltimos, manzilni
-          tekshiring yoki bosh sahifaga qayting.
+          {t("header.uzur")}
         </p>
 
         <a
@@ -26,7 +26,7 @@ const NotFound = () => {
                      focus:outline-none focus:ring-4 focus:ring-red-300"
         >
           <IoHomeOutline className="w-5 h-5 mr-2" />
-          Bosh Sahifaga Qaytish
+          {t("header.bosh")}
         </a>
       </div>
 
