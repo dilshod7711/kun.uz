@@ -174,7 +174,7 @@ const Home = () => {
               <div key={post.id} className="flex flex-col group cursor-pointer">
                 <div className="relative">
                   <img
-                    src={`https://picsum.photos/seed/${post.id}/200/300`}
+                    src={`https://picsum.photos/seed/${post.id}/800/600`}
                     alt=""
                     className="w-full h-auto object-cover mb-3 transition duration-300 group-hover:opacity-80"
                   />
