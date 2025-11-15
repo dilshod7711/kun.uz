@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Poppins";
+  src: url("./assets/font//Poppins/Poppins-Regular.ttf") format("truetype");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("./assets/font/Poppins/Poppins-Medium.ttf") format("truetype");
+  font-weight: 500;
+}
+@font-face {
+  font-family: "#000000";
+  src: url("./assets/font/Poppins/Poppins-Bold.ttf") format("truetype");
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Cardo";
+  src: url("./assets/font/Cardo-Regular.ttf") format("truetype");
+  font-weight: 400;
+}
+
+.font-Roboto {
+  font-family: "#000000";
+}
+.font-Cardo {
+  font-family: "Cardo";
+}
+
+.container {
+  width: 100%;
+  max-width: 1310px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* header nav a.active {
+  transition: all 0.3s ease-in-out;
+} */

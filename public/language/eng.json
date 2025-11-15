@@ -1,0 +1,39 @@
+{
+  "header": {
+    "uzb": "Uzbekistan",
+    "jahon": "World",
+    "iqtisod": "Economy",
+    "jamiyat": "Society",
+    "sport": "Sports",
+    "tex": "Technology",
+    "audio": "Audio",
+    "talim": "Education",
+    "moliya": "Finance",
+    "avto": "Auto",
+    "hayot": "Healthy Life",
+    "mulk": "Real Estate",
+    "ayollar": "Women’s World",
+    "turizm": "Tourism",
+    "beznes": "Business"
+  },
+  "footer": {
+    "sayt": "About the Site",
+    "rss": "RSS",
+    "aloqa": "Contact",
+    "reklama": "Advertising",
+    "jamoa": "Kun.uz Team",
+    "fb1": "Copying, distributing, and using materials published on the «KUN.UZ» website in any other form is allowed only with the written permission of the editorial office.",
+    "guvohnoma": "Certificate",
+    "data": "Date issued: 22.06.2015",
+    "Founder": "Founder",
+    "web": "LLC «WEB EXPERT»",
+    "addr": "Editorial Address:",
+    "uy": "Tashkent city, K. Yormatov street, house 12.",
+    "Eadrr": "Email Address:",
+    "maqola": "- This mark placed in articles and materials indicates that they are published based on commercial and advertising rights.",
+    "himoya": "All rights reserved."
+  },
+  "document": {
+    "title": "Uzbekistan and World News"
+  }
+}
