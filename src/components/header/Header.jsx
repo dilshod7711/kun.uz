@@ -98,16 +98,13 @@ const Header = () => {
               <option value="ru">Русский</option>
               <option value="en">English</option>
             </select>
-
             <div className="bg-gray-100 p-2 rounded-sm cursor-pointer">
               <CiSearch className="w-6 h-6" />
             </div>
-
             <FcLike
               onClick={handlaLikeNavigate}
               className="w-6 h-6 cursor-pointer"
             />
-
             <IoMdMenu className="w-6 h-6 cursor-pointer" />
           </div>
         </div>

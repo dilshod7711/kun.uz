@@ -9,14 +9,14 @@ import { useTranslation } from "react-i18next";
 
 const Home = () => {
   const { t } = useTranslation();
-  const [posts, setPosts] = useState();
+  const [posts, setPosts] = useState([]);
   const [like, setLike] = usePostsApp(Context);
   const navigate = useNavigate();
   useEffect(() => {
     API.get("/posts")
       .then((res) => setPosts(res.data.posts))
-      .catch((error) => {
-        console.log(error.message || "Xatolik yuz berdi ");
+      .catch((err) => {
+        console.log(err);
       });
   }, []);
 
@@ -32,35 +32,18 @@ const Home = () => {
     );
   }
 
-  const randomImageUrls = [
-    "https://storage.kun.uz/source/thumbnails/_medium/11/2sdokOugC3qY-0N3x2qDwW33M9pD7Io8_medium.jpg",
-    "https://storage.kun.uz/source/11/I40b5I4X2F_EqEu6H0RBA1nwOjhkHT9X.jpg",
-    "https://storage.kun.uz/source/thumbnails/_medium/11/mW7ciDfcDz6khWgF4YIlvAv6jaqKI_Wm_medium.jpg",
-    "	https://storage.kun.uz/source/thumbnails/_medium/11/5L_yKzvyavTb7bDNC4d9sx4ss3p5oO7P_medium.jpg",
-    "	https://storage.kun.uz/source/thumbnails/_medium/11/Y2J6HqK0zEXaae80bjfZS2KcIJHNDGnd_medium.jpg",
-    "	https://storage.kun.uz/source/thumbnails/_medium/11/CJbzBqFBAsxT2hDWw8M2QHwmehNfCsYk_medium.jpg",
-    "https://storage.kun.uz/source/thumbnails/_medium/11/2sdokOugC3qY-0N3x2qDwW33M9pD7Io8_medium.jpg",
-    "	https://storage.kun.uz/source/thumbnails/_medium/11/3bGr23_d5dEA-xBn4qbLsT67jPv_OR5c_medium.jpg",
-  ];
-
-  function handleDetail(id) {
+  function handleDetailPage(id) {
     navigate(`/posts/${id}`);
   }
 
-  function handleLikeApp(post) {
-    setLike([...like, post]);
+  function handleLIke(id) {
+    setLike((like) => like.filter((m) => m.id !== id));
   }
-
-  const getRandomImage = () => {
-    const randomIndex = Math.floor(Math.random() * randomImageUrls.length);
-    return randomImageUrls[randomIndex];
-  };
 
   return (
     <>
       <section className="py-8">
         <div className="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-12 gap-6">
-          {/* KATTTA TARAFI  YANGILIKLARNI BOSHIDAGI  */}
           <div className="lg:col-span-8 border-r lg:border-gray-200 lg:pr-6 flex flex-col gap-4">
             <div>
               <img
@@ -142,16 +125,15 @@ const Home = () => {
             </div>
           </div>
 
-          {/* KICHKINA TARAFI DATALARNI */}
-          {/* slice qilish kerak 0,21 disign uchun  */}
+          {/*  */}
+
           <div className="lg:col-span-4 flex flex-col gap-4 pt-4 lg:pt-0">
             <h1 className="text-3xl font-bold border-b-1 border-gray-300 pb-2 mb-2 text-gray-900">
               {t("header.sungi")}
             </h1>
-
-            {posts.slice(0, 21).map((post) => (
+            {posts?.slice(0, 21).map((post) => (
               <div
-                onClick={() => handleDetail(post.id)}
+                onClick={() => handleDetailPage(post.id)}
                 key={post.id}
                 className="pb-3 "
               >
@@ -168,7 +150,7 @@ const Home = () => {
                     Jamiyat
                   </span>
                   <span className="mr-4">| 19.07 / 14.11.2025</span>
-                  <span>👁️ {post.views || "N/A"}</span>
+                  <span>👁️ {post.views}</span>
                 </div>
               </div>
             ))}
@@ -180,6 +162,7 @@ const Home = () => {
       {/*  */}
       {/*  */}
       {/*  */}
+
       <section className="py-10">
         <div className="container mx-auto px-4">
           <h1 className="text-3xl font-extrabold text-gray-900 mb-6 inline-block pb-1 ">
@@ -187,18 +170,18 @@ const Home = () => {
           </h1>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
-            {posts.slice(0, 8).map((post) => (
+            {posts?.slice(0, 12).map((post) => (
               <div key={post.id} className="flex flex-col group cursor-pointer">
                 <div className="relative">
                   <img
-                    src={getRandomImage()}
-                    alt={post.title}
+                    src={`https://picsum.photos/seed/${post.id}/200/200`}
+                    alt=""
                     className="w-full h-auto object-cover mb-3 transition duration-300 group-hover:opacity-80"
                   />
 
                   <div className="absolute top-2 right-2 z-10 flex flex-col space-y-1">
                     <div className="bg-gray-800/60 text-white p-1 rounded-full text-lg hover:bg-red-600 transition duration-150">
-                      <AiOutlineLike onClick={() => handleLikeApp(post)} />
+                      <AiOutlineLike onClick={() => handleLIke(post.id)} />
                     </div>
 
                     <div className="bg-gray-800/60 text-white p-1 rounded-full text-lg hover:bg-red-600 transition duration-150">
@@ -206,7 +189,7 @@ const Home = () => {
                     </div>
                   </div>
                 </div>
-                <div onClick={() => handleDetail(post.id)}>
+                <div onClick={() => handleDetailPage(post.id)}>
                   <div className="text-xs text-gray-500 mb-2 flex items-center">
                     <span className="font-semibold text-blue-600 mr-2">
                       Ўзбекистон
